@@ -24,14 +24,19 @@ public class updateExamServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		// 获取前端传入信息
-		int cid = Integer.parseInt(request.getParameter("cid"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		String ename = request.getParameter("ename");
 		String stunum = request.getParameter("stunum");
-		String etime = request.getParameter("etime");
 		Double egrade = Double.parseDouble(request.getParameter("egrade"));
 		String eplace = request.getParameter("eplace");
+		String eyear = request.getParameter("eyear");
+		String ehour = request.getParameter("ehour");
+		String emonth = request.getParameter("emonth");
+		String eday = request.getParameter("eday");
+		String eminute = request.getParameter("eminute");
 
 		// 封装
-		Exam exam = new Exam(cid, stunum, etime, egrade, eplace);
+		Exam exam = new Exam(id, ename, stunum, eyear, emonth, eday, ehour, eminute, egrade, eplace);
 		JSONObject jsonObject = new JSONObject();
 		ExamDAO examDAO = new ExamDAO();
 

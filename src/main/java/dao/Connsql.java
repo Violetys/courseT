@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 public class Connsql {
 
 	public static final String DRIVER = "org.gjt.mm.mysql.Driver";
-	public static final String DBURL = "jdbc:mysql://localhost:3306/coursetable?characterEncoding=utf8";
+	public static final String DBURL = "jdbc:mysql://localhost:3306/courset?characterEncoding=utf8";
 	public static final String DBUSER = "root";
-	public static final String DBPASS = "liuyong";
+	public static final String DBPASS = "z82625541";
 	private static Connection conn = null;
 	private static PreparedStatement pStat = null;
 	private static ResultSet rs = null;

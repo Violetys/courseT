@@ -7,15 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Card;
-import dao.CardDao;
+import dao.CourseDAO;
 import net.sf.json.JSONObject;
 
 /**
- * 添加打卡记录
+ * 删除课程
  */
-@WebServlet("/addCardServlet")
-public class addCardServlet extends HttpServlet {
+@WebServlet("/deleteCourseServlet")
+public class deleteCourseServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -24,23 +23,17 @@ public class addCardServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		// 获取前端传入信息
-		String stunum = request.getParameter("stunum");
-		int dateday = Integer.parseInt(request.getParameter("dateday"));
-		int datemonth = Integer.parseInt(request.getParameter("datemonth"));
-		int dateyear = Integer.parseInt(request.getParameter("dateyear"));
+		int id = Integer.parseInt(request.getParameter("id"));
 
-		// 封装
-		Card card = new Card(stunum, dateyear, datemonth, dateday);
-
+		CourseDAO courseDAO = new CourseDAO();
 		JSONObject jsonObject = new JSONObject();
-		CardDao cardDao = new CardDao();
-		
-		//将数据添加到数据库中
-		if (cardDao.addCard(card)) {
+
+		// 删除数据库内容
+		if (courseDAO.deleteCourse(id))
 			jsonObject.put("err", "yes");
-		} else {
-			jsonObject.put("err", "打卡失败，请重试");
-		}
+		else
+			jsonObject.put("err", "删除失败，请重试");
+
 		response.getWriter().print(jsonObject);
 	}
 

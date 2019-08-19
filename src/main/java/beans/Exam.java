@@ -2,9 +2,14 @@ package beans;
 
 public class Exam {
 
-	private int cid; // 课程编号
+	private int id;//考试编号
+	private String ename;//考试名称
 	private String stunum; // 学号
-	private String etime; // 考试时间
+	private String eyear; // 考试时间:年
+	private String emonth;// 考试时间:月
+	private String eday;// 考试时间:日
+	private String ehour;// 考试时间:时
+	private String eminute;// 考试时间:分
 	private double egrade; // 成绩
 	private String eplace; // 考试地点
 
@@ -12,21 +17,35 @@ public class Exam {
 		super();
 	}
 
-	public Exam(int cid, String stunum, String etime, double egrade, String eplace) {
+	public Exam(int id, String ename, String stunum, String eyear, String emonth, String eday, String ehour,
+			String eminute, double egrade, String eplace) {
 		super();
-		this.cid = cid;
+		this.id = id;
+		this.ename = ename;
 		this.stunum = stunum;
-		this.etime = etime;
+		this.eyear = eyear;
+		this.emonth = emonth;
+		this.eday = eday;
+		this.ehour = ehour;
+		this.eminute = eminute;
 		this.egrade = egrade;
 		this.eplace = eplace;
 	}
 
-	public int getCid() {
-		return cid;
+	public int getId() {
+		return id;
 	}
 
-	public void setCid(int cid) {
-		this.cid = cid;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
 	}
 
 	public String getStunum() {
@@ -37,12 +56,44 @@ public class Exam {
 		this.stunum = stunum;
 	}
 
-	public String getEtime() {
-		return etime;
+	public String getEyear() {
+		return eyear;
 	}
 
-	public void setEtime(String etime) {
-		this.etime = etime;
+	public void setEyear(String eyear) {
+		this.eyear = eyear;
+	}
+
+	public String getEmonth() {
+		return emonth;
+	}
+
+	public void setEmonth(String emonth) {
+		this.emonth = emonth;
+	}
+
+	public String getEday() {
+		return eday;
+	}
+
+	public void setEday(String eday) {
+		this.eday = eday;
+	}
+
+	public String getEhour() {
+		return ehour;
+	}
+
+	public void setEhour(String ehour) {
+		this.ehour = ehour;
+	}
+
+	public String getEminute() {
+		return eminute;
+	}
+
+	public void setEminute(String eminute) {
+		this.eminute = eminute;
 	}
 
 	public double getEgrade() {
@@ -60,5 +111,7 @@ public class Exam {
 	public void setEplace(String eplace) {
 		this.eplace = eplace;
 	}
+
+	
 
 }

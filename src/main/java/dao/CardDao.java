@@ -23,9 +23,11 @@ public class CardDao {
 	public boolean addCard(Card card) {
 		conn = Connsql.getConnectionn();
 		try {
-			pStat = conn.prepareStatement("insert into card values (?,?)");
+			pStat = conn.prepareStatement("insert into card values (?,?,?,?)");
 			pStat.setString(1, card.getStunum());
-			pStat.setString(2, card.getDate());
+			pStat.setInt(2, card.getDateyear());
+			pStat.setInt(3, card.getDatemonth());
+			pStat.setInt(4, card.getDateday());
 			int cnt = pStat.executeUpdate();
 			if(cnt>0)
 				return true;
@@ -52,7 +54,9 @@ public class CardDao {
 			rs = pStat.executeQuery();
 			while(rs.next()) {
 				Card card = new Card();
-				card.setDate(rs.getString("date"));
+				card.setDateday(rs.getInt("dateday"));
+				card.setDatemonth(rs.getInt("datemonth"));
+				card.setDateyear(rs.getInt("dateyear"));
 				card.setStunum(rs.getString("stunum"));
 				list.add(card);
 			}

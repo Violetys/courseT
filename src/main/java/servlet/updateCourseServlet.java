@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,27 +27,33 @@ public class updateCourseServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		// 获取前端传入信息
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String time = request.getParameter("time");
+		String room = request.getParameter("room");
+		String teacher = request.getParameter("teacher");
+		int start = Integer.parseInt(request.getParameter("start"));
+		int step = Integer.parseInt(request.getParameter("step"));
+		int day = Integer.parseInt(request.getParameter("day"));
+		String term = request.getParameter("term");
+		String[] weeklists = request.getParameterValues("weeklist");
 		String stunum = request.getParameter("stunum");
-		String cname = request.getParameter("cname");
-		int cweekstart = Integer.parseInt(request.getParameter("cweekstart"));
-		int cweekend = Integer.parseInt(request.getParameter("cweekend"));
-		int cweek = Integer.parseInt(request.getParameter("cweek"));
-		int cnum = Integer.parseInt(request.getParameter("cnum"));
-		String cteacher = request.getParameter("cteacher");
-		String cintro = request.getParameter("cintro");
-		String cplace = request.getParameter("cplace");
+
+		List<Integer> weeklist = new ArrayList<>();
+		for (int i = 0; i < weeklists.length; i++) {
+			int week = Integer.parseInt(weeklists[i]);
+			weeklist.add(week);
+		}
 
 		// 封装
-		Course course = new Course(0, stunum, cname, cweekstart, cweekend, cweek, cnum, cteacher, cintro, cplace);
-
+		Course course = new Course(id, name, time, room, teacher, start, step, day, term, weeklist,0);
 		CourseDAO courseDAO = new CourseDAO();
 		JSONObject jsonObject = new JSONObject();
-		
-		//修改数据库内容
-		if(courseDAO.updateCourse(course)) {
+
+		// 修改数据库内容
+		if (courseDAO.updateCourse(course, stunum)) {
 			jsonObject.put("err", "yes");
-		}
-		else {
+		} else {
 			jsonObject.put("err", "修改失败，请重试");
 		}
 		response.getWriter().print(jsonObject);

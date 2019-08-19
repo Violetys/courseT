@@ -1,115 +1,127 @@
 package beans;
 
+import java.util.List;
+
 public class Course {
 
-	private int cid; // 课程编号
-	private String stunum; // 学号
-	private String cname; // 课程名称
-	private int cweekstart; // 课程开始周数
-	private int cweekend; // 课程结束周数
-	private int cweek; // 上课时间：星期
-	private int cnum; // 上课时间：节数
-	private String cteacher; // 任课教师
-	private String cintro; // 课程简介
-	private String cplace; // 上课地点
+	private int id; // 课程编号
+	private String name; // 课程名称
+	private String time; // 上课时间
+	private String room; // 上课教师
+	private String teacher; // 任课教师
+	private int start; // 开始上课节次
+	private int step; // 上课节数
+	private int day; // 周几上
+	private String term; // 上课学期
+	private List<Integer> weeklist; // 第几周至第几周上
+	private int colorRandom; // 随机数，用于对应课程的颜色
 
 	public Course() {
 		super();
 	}
 
-	public Course(int cid, String stunum, String cname, int cweekstart, int cweekend, int cweek, int cnum,
-			String cteacher, String cintro, String cplace) {
+	public Course(int id, String name, String time, String room, String teacher, int start, int step, int day,
+			String term, List<Integer> weeklist, int colorRandom) {
 		super();
-		this.cid = cid;
-		this.stunum = stunum;
-		this.cname = cname;
-		this.cweekstart = cweekstart;
-		this.cweekend = cweekend;
-		this.cweek = cweek;
-		this.cnum = cnum;
-		this.cteacher = cteacher;
-		this.cintro = cintro;
-		this.cplace = cplace;
+		this.id = id;
+		this.name = name;
+		this.time = time;
+		this.room = room;
+		this.teacher = teacher;
+		this.start = start;
+		this.step = step;
+		this.day = day;
+		this.term = term;
+		this.weeklist = weeklist;
+		this.colorRandom = colorRandom;
 	}
 
-	public int getCid() {
-		return cid;
+	public int getId() {
+		return id;
 	}
 
-	public void setCid(int cid) {
-		this.cid = cid;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getStunum() {
-		return stunum;
+	public String getName() {
+		return name;
 	}
 
-	public void setStunum(String stunum) {
-		this.stunum = stunum;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getCname() {
-		return cname;
+	public String getTime() {
+		return time;
 	}
 
-	public void setCname(String cname) {
-		this.cname = cname;
+	public void setTime(String time) {
+		this.time = time;
 	}
 
-	public int getCweekstart() {
-		return cweekstart;
+	public String getRoom() {
+		return room;
 	}
 
-	public void setCweekstart(int cweekstart) {
-		this.cweekstart = cweekstart;
+	public void setRoom(String room) {
+		this.room = room;
 	}
 
-	public int getCweekend() {
-		return cweekend;
+	public String getTeacher() {
+		return teacher;
 	}
 
-	public void setCweekend(int cweekend) {
-		this.cweekend = cweekend;
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
 	}
 
-	public int getCweek() {
-		return cweek;
+	public int getStart() {
+		return start;
 	}
 
-	public void setCweek(int cweek) {
-		this.cweek = cweek;
+	public void setStart(int start) {
+		this.start = start;
 	}
 
-	public int getCnum() {
-		return cnum;
+	public int getStep() {
+		return step;
 	}
 
-	public void setCnum(int cnum) {
-		this.cnum = cnum;
+	public void setStep(int step) {
+		this.step = step;
 	}
 
-	public String getCteacher() {
-		return cteacher;
+	public int getDay() {
+		return day;
 	}
 
-	public void setCteacher(String cteacher) {
-		this.cteacher = cteacher;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
-	public String getCintro() {
-		return cintro;
+	public String getTerm() {
+		return term;
 	}
 
-	public void setCintro(String cintro) {
-		this.cintro = cintro;
+	public void setTerm(String term) {
+		this.term = term;
 	}
 
-	public String getCplace() {
-		return cplace;
+	public List<Integer> getWeeklist() {
+		return weeklist;
 	}
 
-	public void setCplace(String cplace) {
-		this.cplace = cplace;
+	public void setWeeklist(List<Integer> weeklist) {
+		this.weeklist = weeklist;
+	}
+
+	public int getColorRandom() {
+		return colorRandom;
+	}
+
+	public void setColorRandom(int colorRandom) {
+		this.colorRandom = colorRandom;
 	}
 
 }

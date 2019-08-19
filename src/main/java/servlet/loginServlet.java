@@ -36,7 +36,7 @@ public class loginServlet extends HttpServlet {
 		// 获取前端传入信息
 		String stunum = request.getParameter("stunum");
 		String stupsd = request.getParameter("stupsd");
-
+		
 		// 创建对象
 		Stu_loginDAO stu_loginDAO = new Stu_loginDAO();
 		CardDao cardDao = new CardDao();
@@ -51,9 +51,11 @@ public class loginServlet extends HttpServlet {
 			if (stu_loginDAO.logincheck(stunum, stupsd)) {
 				// 获取该用户的所有信息
 				List<Card> cardlist = cardDao.getAllCardByStunum(stunum);
-				List<Course> courselist = courseDAO.getAllCourseByStunum(stunum);
+				List<Course> courselist = courseDAO.getAllCourse(stunum);
 				List<Exam> examlist = examDAO.getAllExamByStunum(stunum);
 				Stu_info stu_info = stu_infoDAO.getStuinfo(stunum);
+//				System.out.println(courselist.size());
+				
 				// 将信息传递到前端
 				jsonObject.put("err", "yes");
 				jsonObject.put("cardlist", cardlist);

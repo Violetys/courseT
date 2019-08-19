@@ -22,12 +22,16 @@ public class ExamDAO {
 	public boolean addExam(Exam exam) {
 		conn = Connsql.getConnectionn();
 		try {
-			pStat = conn.prepareStatement("insert into exam values (?,?,?,?,?)");
-			pStat.setInt(1, exam.getCid());
+			pStat = conn.prepareStatement("insert into exam values (default,?,?,?,?,?,?,?,?,?)");
+			pStat.setString(1, exam.getEname());
 			pStat.setString(2, exam.getStunum());
-			pStat.setString(3, exam.getEtime());
-			pStat.setDouble(4, exam.getEgrade());
-			pStat.setString(5, exam.getEplace());
+			pStat.setDouble(3, exam.getEgrade());
+			pStat.setString(4, exam.getEplace());
+			pStat.setString(5, exam.getEyear());
+			pStat.setString(6, exam.getEmonth());
+			pStat.setString(7, exam.getEday());
+			pStat.setString(8, exam.getEhour());
+			pStat.setString(9, exam.getEminute());
 			int cnt = pStat.executeUpdate();
 			if(cnt >0)
 				return true;
@@ -42,16 +46,14 @@ public class ExamDAO {
 	
 	/**
 	 * 删除考试信息
-	 * @param cid：课程编号
-	 * @param stunum：学号
+	 * @param cid：考試编号
 	 * @return：是否删除成功
 	 */
-	public boolean deleteExam(int cid,String stunum) {
+	public boolean deleteExam(int id) {
 		conn = Connsql.getConnectionn();
 		try {
-			pStat = conn.prepareStatement("delete from exam where cid=? and stunum=?");
-			pStat.setInt(1, cid);
-			pStat.setString(2, stunum);
+			pStat = conn.prepareStatement("delete from exam where id=?");
+			pStat.setInt(1, id);
 			int cnt = pStat.executeUpdate();
 			if(cnt>0)
 				return true;
@@ -72,12 +74,15 @@ public class ExamDAO {
 	public boolean updateExam(Exam exam) {
 		conn = Connsql.getConnectionn();
 		try {
-			pStat = conn.prepareStatement("update exam set etime=?, egrade=?, eplace=? where cid=? and stunum=?");
-			pStat.setString(1, exam.getEtime());
-			pStat.setDouble(2, exam.getEgrade());
-			pStat.setString(3, exam.getEplace());
-			pStat.setInt(4, exam.getCid());
-			pStat.setString(5, exam.getStunum());
+			pStat = conn.prepareStatement("update exam set eyear=?,emonth=?,eday=?,ehour=?,eminute=?, egrade=?, eplace=? where id=?");
+			pStat.setString(1, exam.getEyear());
+			pStat.setString(2, exam.getEmonth());
+			pStat.setString(3, exam.getEday());
+			pStat.setString(4, exam.getEhour());
+			pStat.setString(5, exam.getEminute());
+			pStat.setDouble(6, exam.getEgrade());
+			pStat.setString(7, exam.getEplace());
+			pStat.setInt(8, exam.getId());
 			int cnt = pStat.executeUpdate();
 			if(cnt>0)
 				return true;
@@ -104,12 +109,17 @@ public class ExamDAO {
 			rs = pStat.executeQuery();
 			while(rs.next()) {
 				Exam exam = new Exam();
-				exam.setCid(rs.getInt("cid"));
+				exam.setId(rs.getInt("id"));
 				exam.setStunum(stunum);
-				exam.setEgrade(rs.getDouble("egrade"));
 				exam.setEplace(rs.getString("eplace"));
-				exam.setEtime(rs.getString("etime"));
+				exam.setEname(rs.getString("ename"));
+				exam.setEyear(rs.getString("eyear"));
+				exam.setEmonth(rs.getString("emonth"));
+				exam.setEday(rs.getString("eday"));
+				exam.setEhour(rs.getString("ehour"));
+				exam.setEminute(rs.getString("eminute"));
 				list.add(exam);
+				System.out.println("xbubc"+exam.getEname());
 			}
 			return list;
 		}catch (Exception e) {
